@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Game {
     private Board board;
 
-    public Game(int size) { //creates a new board instance with the given size
+    public Game(int size) {
         board = new Board(size);
     }
 
@@ -15,7 +15,7 @@ public class Game {
 
         //continues the game until it's over
         while (!board.isGameOver()) {
-            // Get the player's move and reveal the corresponding cell
+            //get player's move and reveal the corresponding cell
             int[] move = getPlayerMove();
             board.revealTiles(move[0], move[1]);
             board.displayBoard();

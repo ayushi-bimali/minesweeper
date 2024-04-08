@@ -11,7 +11,7 @@ public class Board {
 
     public Board(int size) { //initialises the board with chosen size
         this.size = size;
-        grid = new Tiles[size + 1][size + 1]; //bc otherwise numbers started from 0
+        grid = new Tiles[size + 1][size + 1];
         firstMove = true;
         revealedTilesTotal = 0;
     }
@@ -28,7 +28,7 @@ public class Board {
         }
 
         putMinesRandomly();
-        remainingFlags = mineCount; //num of flags = num of mines
+        remainingFlags = mineCount;
     }
 
     int mineCount = 0;
@@ -107,6 +107,7 @@ public class Board {
         }
         if (remainingFlags == 0) {
             System.out.println("No flags left!");
+            grid[row][col].setTileRevealed(false);
             return;
         }
         if (grid[row][col].isTileFlagged()) { //if tile is already flagged, remove flag
@@ -154,7 +155,7 @@ public class Board {
         return gameWon;
     }
 
-    public void displayBoard() { 
+    public void displayBoard() {
         System.out.print("   ");
         for (int j = 1; j <= size; j++) {
             System.out.print(j + " ");
@@ -164,6 +165,7 @@ public class Board {
         for (int i = 1; i <= size; i++) {
             System.out.print(i + "| ");
             for (int j = 1; j <= size; j++) {
+                //displays each tile based on its state
                 if (grid[i][j].isTileRevealed()) {
                     System.out.print(grid[i][j].getTileSymbol() + " ");
                 } else if (grid[i][j].isTileFlagged()) {
